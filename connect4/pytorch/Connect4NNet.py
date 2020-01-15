@@ -10,11 +10,20 @@ import torch.optim as optim
 from torchvision import datasets, transforms
 from torch.autograd import Variable
 
+args = dotdict({
+    'lr': 0.001,
+    'dropout': 0.3,
+    'epochs': 20,
+    'batch_size': 64,
+    'cuda': torch.cuda.is_available(),
+    'num_channels': 16,
+})
+
 class Connect4NNet(nn.Module):
     def __init__(self, game, args):
         # game params
-        self.board_x, self.board_y = game.getBoardSize()
-        self.action_size = game.getActionSize()
+        self.board_x, self.board_y = 6, 7
+        self.action_size = 7
         self.args = args
 
         super(Connect4NNet, self).__init__()
